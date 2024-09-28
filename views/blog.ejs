@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+
+    <!-- Font Awesome CDN for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Light mode styles */
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #222;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #222;
+            color: #f0f0f0;
+        }
+
+        h3 {
+            text-align: center;
+            color: inherit;
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 24px;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        form {
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 450px;
+            margin: 25px auto;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            animation: bounceIn 0.9s ease-out;
+        }
+
+        body.dark-mode form {
+            background: #333;
+            color: #fafafa;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: inherit;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: #fff;
+            color: #222;
+        }
+
+        body.dark-mode input[type="text"] {
+            background-color: #444;
+            color: #fafafa;
+            border: 2px solid #666;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.25s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .toggle-mode {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            transition: background-color 0.25s ease;
+        }
+
+        .toggle-mode i {
+            margin-right: 8px;
+        }
+
+        .toggle-mode:hover {
+            background-color: #0056b3;
+        }
+
+        .logout-button {
+            position: fixed;
+            right: 15px;
+            top: 15px;
+            background-color: #ff4757;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.25s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #e63946;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 45px 0;
+        }
+
+        table {
+            width: 85%;
+            margin: 0 auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #fafafa;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.9s ease-out;
+        }
+
+        body.dark-mode table {
+            background-color: #333;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 2px solid #eee;
+            color: inherit;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        body.dark-mode th {
+            background-color: #444;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        body.dark-mode tr:nth-child(even) {
+            background-color: #444;
+        }
+
+        tr:hover {
+            background-color: #efefef;
+        }
+
+        body.dark-mode tr:hover {
+            background-color: #555;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <h3>My Blog</h3>
+
+    <!-- Toggle Button for Dark/Light Mode with Icons -->
+    <button class="toggle-mode" id="toggle-mode-btn"><i class="fas fa-moon"></i>Dark Mode</button>
+
+    <form action="/api/blog/" method="post">
+        <label for="title">Blog Title:</label>
+        <input type="text" name="title" id="title" required>
+        <label for="description">Blog Description:</label>
+        <input type="text" name="description" id="description" placeholder="Enter your description" required>
+        <button type="submit">Add Blog</button>
+    </form>
+
+    <hr>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Blog Title</th>
+                <th>Blog Description</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i=0; i < blogs.length; i++) { %>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= blogs[i].title %></td>
+                <td><%= blogs[i].description %></td>
+                <td><%= blogs[i].date.toDateString() %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle-mode-btn');
+        const body = document.body;
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+
+            // Change the icon and text based on the current mode
+            if (body.classList.contains('dark-mode')) {
+                toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+            } else {
+                toggleBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+            }
+        });
+    </script>
+</body>
+
+</html>

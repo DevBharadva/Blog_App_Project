@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #88c0d0 0%, #5e81ac 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: backgroundShift 4s infinite alternate ease-in-out;
+        }
+    
+        @keyframes backgroundShift {
+            0% {
+                background: linear-gradient(135deg, #81a1c1 0%, #4c566a 100%);
+            }
+            100% {
+                background: linear-gradient(135deg, #bf616a 0%, #d08770 100%);
+            }
+        }
+    
+        h1 {
+            color: #fff;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 2s forwards 1s;
+        }
+    
+        form {
+            background: #2e3440; /* Dark background for the form */
+            color: #d8dee9; /* Light text color */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideIn 1s forwards 0.5s;
+        }
+    
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #88c0d0; /* Lighter label color for contrast */
+        }
+    
+        input[type="text"], input[type="password"]{
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #4c566a; /* Darker border for the input fields */
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: #3b4252; /* Darker background for input fields */
+            color: #d8dee9; /* White text color for input fields */
+        }
+
+        a {
+            display: block;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #81a1c1;
+            text-decoration: none;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #88c0d0;
+            box-shadow: 0 0 8px rgba(136, 192, 208, 0.5);
+            outline: none;
+        }
+    
+        button {
+            background-color: #81a1c1;
+            color: white;
+            border: none;
+            margin: 10px 0;
+            padding: 14px 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+    
+        button:hover {
+            background-color: #5e81ac;
+            transform: translateY(-2px);
+        }
+    
+        button:active {
+            background-color: #4c566a;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <form action="/api/user/login" method="post">
+        <h1>Login Page</h1>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" placeholder="Enter your email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required>
+        <a href="/api/user/forgotpassword">Forgot Password?</a>
+        <a href="/api/user/register">New User Here</a>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
